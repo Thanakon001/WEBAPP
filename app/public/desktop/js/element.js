@@ -12,7 +12,8 @@ const pageAction = {
 }
 
 let myChart;
-let color
+let myChartType;
+let color;
 const PageElement = {
     box_coust: async () => {
         let data1 = []
@@ -187,7 +188,7 @@ const PageElement = {
 
         color = localStorage.getItem('theme') === 'light' ? '#22252A' : '#fff'
 
-        let ctx = document.querySelector('#myChart')?.getContext('2d');
+        let ctx = document.getElementById('myChart')?.getContext('2d');
         if (!ctx) return
 
         if (myChart) {
@@ -212,6 +213,65 @@ const PageElement = {
                         backgroundColor: '#f87171',
                         borderColor: '#f87171',
                         borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: color
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Custom Chart Title',
+                        color: color
+                    }
+                },
+                scales: {
+                    x: {
+                        barThickness: 5,
+                        maxBarThickness: 5,
+                        ticks: {
+                            color: color
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: color
+                        }
+                    }
+                },
+                barThickness: 50,
+            }
+        });
+    },
+    chart_type: async (target = 'day') => {
+
+        color = localStorage.getItem('theme') === 'light' ? '#22252A' : '#fff'
+        let ctx = document.getElementById('myChartType')?.getContext('2d');
+        if (!ctx) return
+
+        if (myChartType) {
+            myChartType.destroy()
+        }
+
+        myChartType = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [
+                    {
+                        label: 'เงินรายรับ',
+                        data: [12, 19, 8, 5, 2, 3],
+                        borderWidth: 3
+                    },
+                    {
+                        label: 'เงินรายจ่าย',
+                        data: [29, 45, 5, 7, 8, 1],
+                        borderWidth: 3
                     }
                 ]
             },
@@ -565,11 +625,11 @@ const modals = {
         try {
             const modal = document.querySelectorAll('.modal')
             const overlay = document.querySelector('.overlay')
-            
+
             if (!modal || !overlay) return
-            
+
             overlay.style.display = 'flex'
-            
+
             modal.forEach(item => {
                 if (target === item.getAttribute('name')) {
                     item.style.display = 'flex'
@@ -585,35 +645,35 @@ const modals = {
             const modal = document.querySelectorAll('.modal')
             const overlay = document.querySelector('.overlay')
             const forms = document.querySelectorAll('form')
-            
+
             if (!modal || !overlay) return
-            
+
             overlay.style.display = 'none'
-            
+
             modal.forEach(item => {
                 item.style.display = 'none'
             })
-            
+
             PageElement.select_typelist()
-            
+
             forms.forEach(form => {
                 form.reset()
             })
         } catch (error) {
-            console.error('เกิดข้อผิดพลาดในการปิด Modal:', error) 
+            console.error('เกิดข้อผิดพลาดในการปิด Modal:', error)
         }
     },
 
     AddPopupEditType: (id) => {
         try {
             if (!id) return
-            
+
             const data = JSON.parse(localStorage.getItem('selecttype'))
             if (!data || !data.length) return
-            
+
             const typeData = data.find(item => item.type_id === id)
             if (!typeData) return
-            
+
             const html = `
                 <form id="subedittype">
                     <div class="select-box">
@@ -632,7 +692,7 @@ const modals = {
                 html: html,
                 customClass: {
                     confirmButton: 'btn bg-success',
-                    cancelButton: 'btn bg-r', 
+                    cancelButton: 'btn bg-r',
                     denyButton: 'btn bg-r'
                 },
                 confirmButtonText: 'ยืนยัน',
@@ -654,7 +714,7 @@ const modals = {
                         title: 'ลบข้อมูล',
                         text: 'คุณต้องการลบข้อมูลหรือไม่',
                         icon: 'warning',
-                        confirmButtonText: 'ยืนยัน', 
+                        confirmButtonText: 'ยืนยัน',
                         cancelButtonText: 'ยกเลิก',
                         showCancelButton: true,
                         showConfirmButton: true,

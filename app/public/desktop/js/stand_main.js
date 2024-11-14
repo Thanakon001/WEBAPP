@@ -15,6 +15,7 @@ btn_sidebar.forEach(element => {
             if (page === 'dash') {
                 PageElement.box_coust()
                 PageElement.chart_main()
+                PageElement.chart_type()
             }
 
             if (page === 'note') {
@@ -90,6 +91,7 @@ selecttypenoteModal?.addEventListener('change', async (e) => {
 
 async function loadEelement() {
     try {
+        PageElement.chart_type()
         PageElement.chart_main()
         PageElement.addmodalEvent()
         PageElement.modalEditUser()
