@@ -1,0 +1,61 @@
+<main class="page" page="report_time" id="note">
+    <div class="box between">
+        <div class=""></div>
+        <div class="box-add">
+            <button class="bg-peple btn" name="searchtime">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                    fill="#ffffff">
+                    <path
+                        d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z" />
+                </svg>
+                ตัวกรอง
+            </button>
+            <button class="btn bg-oren" onclick="sub_reporttime()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                    fill="#FFFFFF">
+                    <path
+                        d="M648-624v-120H312v120h-72v-192h480v192h-72Zm-480 72h625-625Zm539.79 96q15.21 0 25.71-10.29t10.5-25.5q0-15.21-10.29-25.71t-25.5-10.5q-15.21 0-25.71 10.29t-10.5 25.5q0 15.21 10.29 25.71t25.5 10.5ZM648-216v-144H312v144h336Zm72 72H240v-144H96v-240q0-40 28-68t68-28h576q40 0 68 28t28 68v240H720v144Zm73-216v-153.67Q793-530 781-541t-28-11H206q-16.15 0-27.07 11.04Q168-529.92 168-513.6V-360h72v-72h480v72h73Z" />
+                </svg>
+                พิมพ์ PDF
+            </button>
+
+            <button class="btn bg-green" name="addnote">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                    fill="#ffffff">
+                    <path
+                        d="m648-140 112-112v92h40v-160H640v40h92L620-168l28 28Zm-448 20q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v268q-19-9-39-15.5t-41-9.5v-243H200v560h242q3 22 9.5 42t15.5 38H200Zm0-120v40-560 243-3 280Zm80-40h163q3-21 9.5-41t14.5-39H280v80Zm0-160h244q32-30 71.5-50t84.5-27v-3H280v80Zm0-160h400v-80H280v80ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z" />
+                </svg>
+                ส่งออก Excel
+            </button>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="contai-table">
+            <div class="table-header">
+                <table width="100%">
+                    <tr>
+                        <th width="5%">ลำดับ</th>
+                        <th width="15%">เดือน</th>
+                        <th width="15%">ประเภท</th>
+                        <th width="20%">หมวดหมู่</th>
+                        <th width="20%">รายรับ (บาท)</th>
+                        <th width="20%">รายจ่าย (บาท)</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="table-body" id="table_notetime">
+                <table class="body-table" width="100%">
+                    <tr>
+                        <td width="5%">1</td>
+                        <td width="15%">ตุลาคม</td>
+                        <td width="15%">เงินเดือน</td>
+                        <td width="20%">รายรับ</td>
+                        <td width="20%">30,000</td>
+                        <td width="20%">-</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

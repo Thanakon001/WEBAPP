@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เอกสารรายรับรายจ่าย</title>
+    <style>
+        body {
+            font-family:Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table,
+        th,
+        td {
+            font-size: 14px;
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 7px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .d-flex-col{
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            font-size: 14px;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+
+        .action-button {
+            color: white;
+            background-color: #007bff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3 align="center">เอกสารรายรับรายจ่ายประจำเดือน</h3>
+        <div class="d-flex-col">
+            <% if(headers) { %>         
+                <span><%= headers.com_name %></span>
+                <% if(headers.com_details) { %>
+                    <span><%= headers.com_address %></span>
+                <% } %>
+            <% } %>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>วันที่</th>
+                    <th>ประเภท</th>
+                    <th>หมวดหมู่</th>
+                    <th>รายละเอียด</th>
+                    <th>จำนวนเงิน</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(data) { %>
+                    <% data.forEach((item, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= new Date(item.detail_date).toLocaleDateString('th-TH') %></td>
+                            <td><%= item.typenote_id === 1 ? 'รายรับ' : 'รายจ่าย' %></td>
+                            <td><%= item.type_name %></td>
+                            <td><%= item.detail_note %></td>
+                            <td><%= item.detail_coust.toLocaleString() %></td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td>1</td>
+                        <td>null</td>
+                        <td>รายรับ</td>
+                        <td>เงินเดือน</td>
+                        <td>ได้รับเงินเดือนประจำเดือน</td>
+                        <td>0 บาท</td>
+                    </tr>
+                <% } %>
+            </tbody>
+            <% if(data) { %>
+                <% let totalCost = 0; %>
+                <% let incomeCost = 0; %>
+                <% let expensesCost = 0; %>
+
+                <% data.forEach((item) => {
+                    if(item.typenote_id === 1) {
+                        incomeCost += item.detail_coust;
+                    } else if(item.typenote_id === 2) {
+                        expensesCost += item.detail_coust;
+                    }
+                    totalCost += item.detail_coust; 
+                }); %>
+        </table>
+        <div class="d-flex-col">
+            <span>รายรับทั้งหมด: <%= incomeCost.toLocaleString() %> บาท</span>
+            <span>รายจ่ายทั้งหมด: <%= expensesCost.toLocaleString() %> บาท</span>
+            <span>ยอดคงเหลือ: <%= (incomeCost - expensesCost).toLocaleString() %> บาท</span>
+        </div>
+        <% } %>
+    </div>
+</body>
+
+</html>

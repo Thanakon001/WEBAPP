@@ -1,0 +1,92 @@
+<main class="page" page="note" id="note">
+    <div class="box between">
+        <div class="box-search">
+            <input type="text" name="searchnote" id="searchnote" placeholder="ค้นหารายละเอียด...">
+            <button class="bg-gay btn" name="search">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                    fill="#ffffff">
+                    <path
+                        d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z" />
+                </svg>
+                ตัวกรอง
+            </button>
+        </div>
+        <div class="box-add">
+            <button class="btn bg-sky" name="addtype">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                    fill="#ffffff">
+                    <path
+                        d="M444-288h72v-156h156v-72H516v-156h-72v156H288v72h156v156Zm48 192q-81 0-153-30t-126-81.66q-54-51.66-85.5-121.5T96-478.81q0-79.81 30-150T208.5-751q52.5-52 122.31-82.5T480-864q81 0 150.84 31.68 69.84 31.69 121.5 86Q804-692 834-619.64q30 72.36 30 154.64v297q0 29.7-21.15 50.85Q821.7-96 792-96H492Zm-12-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z" />
+                </svg>
+                เพิ่มประเภท
+            </button>
+
+            <button class="btn bg-sky" name="addnote">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                    fill="#ffffff">
+                    <path
+                        d="M444-288h72v-156h156v-72H516v-156h-72v156H288v72h156v156Zm48 192q-81 0-153-30t-126-81.66q-54-51.66-85.5-121.5T96-478.81q0-79.81 30-150T208.5-751q52.5-52 122.31-82.5T480-864q81 0 150.84 31.68 69.84 31.69 121.5 86Q804-692 834-619.64q30 72.36 30 154.64v297q0 29.7-21.15 50.85Q821.7-96 792-96H492Zm-12-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z" />
+                </svg>
+                เพิ่มรายการ
+            </button>
+
+            <button class="btn bg-oren" onclick="sub_reportnote()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                    fill="#FFFFFF">
+                    <path
+                        d="M648-624v-120H312v120h-72v-192h480v192h-72Zm-480 72h625-625Zm539.79 96q15.21 0 25.71-10.29t10.5-25.5q0-15.21-10.29-25.71t-25.5-10.5q-15.21 0-25.71 10.29t-10.5 25.5q0 15.21 10.29 25.71t25.5 10.5ZM648-216v-144H312v144h336Zm72 72H240v-144H96v-240q0-40 28-68t68-28h576q40 0 68 28t28 68v240H720v144Zm73-216v-153.67Q793-530 781-541t-28-11H206q-16.15 0-27.07 11.04Q168-529.92 168-513.6V-360h72v-72h480v72h73Z" />
+                </svg>
+                พิมพ์ PDF
+            </button>
+
+            <button class="btn bg-green">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                    fill="#ffffff">
+                    <path
+                        d="m648-140 112-112v92h40v-160H640v40h92L620-168l28 28Zm-448 20q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v268q-19-9-39-15.5t-41-9.5v-243H200v560h242q3 22 9.5 42t15.5 38H200Zm0-120v40-560 243-3 280Zm80-40h163q3-21 9.5-41t14.5-39H280v80Zm0-160h244q32-30 71.5-50t84.5-27v-3H280v80Zm0-160h400v-80H280v80ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z" />
+                </svg>
+                ส่งออก Excel
+            </button>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="contai-table">
+            <div class="table-header">
+                <table width="100%">
+                    <tr>
+                        <th width="5%" class="index">ลำดับ</th>
+                        <th width="15%">วันที่</th>
+                        <th width="15%">ประเภท</th>
+                        <th width="10%" class="index">หมวดหมู่</th>
+                        <th>รายละเอียด</th>
+                        <th width="20%">จำนวนเงิน(บาท)</th>
+                        <th width="10%">action</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="table-body" name="">
+                <table class="body-table" width="100%">
+                    <tr>
+                        <th width="5%" class="index">#</th>
+                        <th width="15%">00/00/0000</th>
+                        <th width="15%">ไม่มี</th>
+                        <th width="10%">ไม่มี</th>
+                        <th width="25%"></th>
+                        <th width="20%">0.00</th>
+                        <th width="10%">
+                            <button class="btn bg-y" action="editenote">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960"
+                                    width="20px" fill="#ffffff">
+                                    <path
+                                        d="M192-144v-153l498-498q11-11 24-16t27-5q14 0 27 5t24 16l51 51q11 11 16 24t5 27q0 14-5 27t-16 24L345-144H192Zm72-72h51l380-380-25-26-26-25-380 380v51Zm539-491-51-51 51 51Zm-133 85-26-25 51 51-25-26ZM564-144q61 0 120.5-35.5T744-276q0-34-15.5-56.5T679-376l-54 53q25 13 36 22.5t11 24.5q0 23-35.5 41.5T564-216q-14 0-25 11t-11 25q0 15 11 25.5t25 10.5ZM216-423l56-56q-21-5-38.5-16T216-516q0-10 17.5-22.5T301-576q79-40 105-68.5t26-63.5q0-51-37.5-79.5T298-816q-41 0-78 13.5T166-767q-9 12-8 26.5t13 23.5q11 9 26.5 7.5T222-721q13-13 33-18t43-5q31 0 46.5 10.5T360-708q0 13-16.5 26.5T269-640q-70 34-97.5 61T144-516q0 29 17.5 53t54.5 40Z" />
+                                </svg>
+                                แก้ไข
+                            </button>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

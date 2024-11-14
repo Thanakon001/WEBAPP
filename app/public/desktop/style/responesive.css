@@ -1,0 +1,39 @@
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transition: none;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    * {
+        font-size: 0.8rem;
+    }
+
+    .contai {
+        flex: 1;
+
+        .sidebar {
+            display: none;
+        }
+
+        .page {
+            margin-left: 0;
+        }
+
+        overflow-y: auto;
+    }
+
+    .box {
+        flex-direction: column;
+    }
+}

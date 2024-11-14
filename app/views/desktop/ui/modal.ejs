@@ -1,0 +1,290 @@
+<div class="overlay"></div>
+<div class="overlay-load">
+    <span class="loader"></span>
+</div>
+<!-- เพิ่มรายการ -->
+<div class="modal" name="addnote">
+    <div class="modal-header">
+        <h3>เพิ่มรายการ</h3>
+        <div class="btn" name="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#5f6368">
+                <path
+                    d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" />
+            </svg>
+        </div>
+    </div>
+
+    <form id="subaddnote">
+        <input type="date" name="detail_date" id="dateInput" required>
+        <script>
+
+        </script>
+        <div class="select-box">
+            <select name="type_note" class="selecttypenote">
+                <option value="0">กรุณาเลือกหมวดหมู่ รายรับ/รายจ่าย</option>
+                <option value="1">รายรับ</option>
+                <option value="2">รายจ่าย</option>
+            </select>
+        </div>
+        <div class="select-box">
+            <select name="type_id" class="selecttype">
+            </select>
+        </div>
+        <textarea name="detail_note" rows="4" cols="50" placeholder="รายละเอียด.."></textarea>
+        <input type="number" name="detail_coust" placeholder="จำนวนเงิน">
+    </form>
+    <div class="modal-footer">
+        <button class="btn bg-peple" onclick="sub_addnote()">บันทึก</button>
+        <button class="btn bg-red" name="close-modal">ยกเลิก</button>
+    </div>
+</div>
+<!-- แก้ไขรายการ -->
+<div class="modal" name="editnote">
+    <div class="modal-header">
+        <h3>แก้ไขรายการ</h3>
+        <div class="btn" name="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#5f6368">
+                <path
+                    d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" />
+            </svg>
+        </div>
+    </div>
+    <form id="subeditnote">
+        <input type="date" name="detail_date" required>
+        <input type="hidden" name="id">
+        <div class="select-box">
+            <select name="type_note" class="selecttypenote">
+                <option value="1">รายรับ</option>
+                <option value="2">รายจ่าย</option>
+            </select>
+        </div>
+        <div class="select-box">
+            <select name="type_id" class="selecttype">
+            </select>
+        </div>
+        <textarea name="detail_note" rows="4" cols="50" placeholder="รายละเอียด.."></textarea>
+        <input type="number" name="detail_coust" id="" placeholder="จำนวนเงิน">
+    </form>
+    <div class="modal-footer">
+        <button class="btn bg-peple" onclick="sub_updatenote()">บันทึก</button>
+        <button class="btn bg-red" name="close-modal">ยกเลิก</button>
+        <button class=" bg-oren" onclick="sub_deletenote()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF">
+                <path
+                    d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+            </svg>
+        </button>
+    </div>
+</div>
+<!-- เพิ่มรายการประเภท -->
+<div class="modal" name="addtype">
+    <div class="modal-header">
+        <h3>เพิ่มรายประเภท</h3>
+        <div class="btn" name="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#5f6368">
+                <path
+                    d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" />
+            </svg>
+        </div>
+    </div>
+    <form id="subaddtype">
+        <div class="select-box">
+            <select name="typenote_id" class="select" id="selecttypenoteModal">
+                <option value="1">รายรับ</option>
+                <option value="2">รายจ่าย</option>
+            </select>
+        </div>
+        <input type="text" name="type_name" placeholder="ชื่อประเภท" required>
+    </form>
+    <span class="title">*ข้อมูลจะแสดงตามหมวดหมู่ที่เลือก</span>
+    <div class="contai-table">
+        <div class="table-header">
+            <table width="100%">
+                <tr>
+                    <th width="10%">ลำดับ</th>
+                    <th>ชื่อประเภท</th>
+                    <th width="10%">action</th>
+                </tr>
+            </table>
+        </div>
+        <div class="table-body" id="table_type">
+            <table class="body-table" width="100%">
+                <tr>
+                    <th width="10%">#</th>
+                    <th></th>
+                    <th width="10%"></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn bg-peple" onclick="sub_addtypelist()">บันทึก</button>
+        <button class="btn bg-red" name="close-modal">ยกเลิก</button>
+    </div>
+</div>
+<!-- ตัวกรองการค้นหา -->
+<div class="modal" name="search">
+    <div class="modal-header">
+        <h3>ตัวกรองการค้นหา</h3>
+        <div class="btn" name="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#5f6368">
+                <path
+                    d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" />
+            </svg>
+        </div>
+    </div>
+    <form id="formsearchnote">
+        <label for="datestart">วันที่เริ่มต้น</label>
+        <input type="date" name="date_start" required>
+        <label for="dateend">วันที่สิ้นสุด</label>
+        <input type="date" name="date_end" required>
+
+        <div class="select-box">
+            <select name="type_note" class="selecttypenotesearch">
+                <option value="0">ทุกหมวดหมู่ รายรับ/รายจ่าย</option>
+                <option value="1">รายรับ</option>
+                <option value="2">รายจ่าย</option>
+            </select>
+        </div>
+        <div class="select-box">
+            <select name="type_id" class="selecttype">
+
+            </select>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button class="btn bg-peple" onclick="sub_searchfilter()">แสดง</button>
+        <button class="btn bg-red" name="close-modal">ยกเลิก</button>
+    </div>
+</div>
+<!-- ตัวกรองการค้นหา -->
+<div class="modal" name="searchtime">
+    <div class="modal-header">
+        <h3>ตัวกรองการค้นหา</h3>
+        <div class="btn" name="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#5f6368">
+                <path
+                    d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" />
+            </svg>
+        </div>
+    </div>
+    <form id="formsearchnotetime">
+        <label for="datestart">วันที่เริ่มต้น</label>
+        <input type="month" name="date_start" required>
+        <label for="dateend">วันที่สิ้นสุด</label>
+        <input type="month" name="date_end" required>
+
+        <div class="select-box">
+            <select name="type_note" class="selecttypenotesearch">
+                <option value="0">ทุกหมวดหมู่ รายรับ/รายจ่าย</option>
+                <option value="1">รายรับ</option>
+                <option value="2">รายจ่าย</option>
+            </select>
+        </div>
+        <div class="select-box">
+            <select name="type_id" class="selecttype">
+
+            </select>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button class="btn bg-peple" onclick="sub_monthfilter()">แสดง</button>
+        <button class="btn bg-red" name="close-modal">ยกเลิก</button>
+    </div>
+</div>
+<!-- ตัวกรองการค้นหา -->
+<div class="modal" name="searchyear">
+    <div class="modal-header">
+        <h3>ตัวกรองการค้นหา</h3>
+        <div class="btn" name="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#5f6368">
+                <path
+                    d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" />
+            </svg>
+        </div>
+    </div>
+    <form id="formsearchnoteyear">
+        <label for="datestart">วันที่เริ่มต้น</label>
+        <input type="month" name="date_start" id="datestart" required>
+        <label for="dateend">วันที่สิ้นสุด</label>
+        <input type="month" name="date_end" id="dateend" required>
+    </form>
+    <div class="modal-footer">
+        <button class="btn bg-peple" onclick="sub_yearfilter()">แสดง</button>
+        <button class="btn bg-red" name="close-modal">ยกเลิก</button>
+    </div>
+</div>
+<!-- เพิ่ม ร้าน -->
+<div class="modal" name="addcompany">
+    <div class="modal-header">
+        <h3>เพิ่มรายบัญชี</h3>
+        <div class="btn" name="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#5f6368">
+                <path
+                    d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" />
+            </svg>
+        </div>
+    </div>
+    <form id="sub_company">
+        <label for="namecom">ชื่อบัญชี *</label>
+        <input type="text" name="com_name" placeholder="ชื่อบัญชี" required>
+        <label for="detail_com">รายละเอียด</label>
+        <input type="text" name="com_details" placeholder="รายละเอียด" required>
+        <span>*รายละเอียดส่วนนี้จะแสดงในรายงาน</span>
+    </form>
+    <div class="modal-footer">
+        <button class="btn bg-peple" onclick="sub_addcompany()">บันทึก</button>
+        <button class="btn bg-red" name="close-modal">ยกเลิก</button>
+    </div>
+</div>
+<!-- แก้ไข ร้าน -->
+<div class="modal" name="editcompany">
+    <div class="modal-header">
+        <h3>แก้ไขรายการ</h3>
+        <div class="btn" name="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#5f6368">
+                <path
+                    d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" />
+            </svg>
+        </div>
+    </div>
+    <form id="subedit_company">
+        <label for="namecom">ชื่อบัญชี *</label>
+        <input type="text" name="com_name" placeholder="ชื่อบัญชี" required>
+        <label for="detail_com">รายละเอียด</label>
+        <input type="text" name="com_details" placeholder="รายละเอียด" required>
+        <span>*รายละเอียดส่วนนี้จะแสดงในรายงาน</span>
+    </form>
+    <div class="modal-footer">
+        <button class="btn bg-peple" onclick="sub_editcompany()">บันทึก</button>
+        <button class="btn bg-red" name="close-modal">ยกเลิก</button>
+        <button class=" bg-oren" onclick="sub_deletecompany()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF">
+                <path
+                    d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+            </svg>
+        </button>
+    </div>
+</div>
+<!-- แก้ไขรหัสผ่าน -->
+<div class="modal" name="editpassword">
+    <div class="modal-header">
+        <h3>แก้ไขรหัสผ่าน</h3>
+        <div class="btn" name="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#5f6368">
+                <path
+                    d="m291-240-51-51 189-189-189-189 51-51 189 189 189-189 51 51-189 189 189 189-51 51-189-189-189 189Z" />
+            </svg>
+        </div>
+    </div>
+    <form id="sub_editpassword">
+        <label for="password">รหัสผ่าน *</label>
+        <input type="password" name="password" placeholder="รหัสผ่าน" required>
+        <label for="password2">รหัสผ่านยืนยัน *</label>
+        <input type="password" name="password2" placeholder="รหัสผ่านยืนยัน" required>
+    </form>
+    <div class="modal-footer">
+        <button class="btn bg-peple" onclick="sub_editpassword()">บันทึก</button>
+        <button class="btn bg-red" name="close-modal">ยกเลิก</button>
+    </div>
+</div>

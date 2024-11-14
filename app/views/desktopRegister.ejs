@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สมัครเข้าใช้งาน</title>
+  <link rel="stylesheet" href="/desktop/style/regis.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <form class="container" id="form-register">
+    <%- include('desktop/ui/alert.ejs') %>
+      <h2>สมัครเข้าใช้งาน</h2>
+      <p>สร้างบัญชีเพื่อเริ่มใช้บริการของเรา</p>
+      <input type="text" name="user_name" class="form-input" placeholder="ชื่อผู้ใช้">
+      <input type="email" name="user_email" class="form-input" placeholder="อีเมล">
+      <input type="password" name="user_password" class="form-input" placeholder="รหัสผ่าน">
+      <input type="text" name="user_address" class="form-input" placeholder="ที่อยู่">
+      <button class="form-button">สมัครเข้าใช้งาน</button>
+      <div class="footer-text">
+        มีบัญชีอยู่หรือไม่? <a href="/login">เข้าสู่ระบบ</a>.
+      </div>
+  </form>
+</body>
+<script src="/desktop/js/element.js"></script>
+<script>
+  let form = document.getElementById('form-register')
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    let formData = new FormData(form)
+
+    let option = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        {
+          action: 'insert',
+          user_name: formData.get('user_name'),
+          user_email: formData.get('user_email'),
+          user_password: formData.get('user_password'),
+          user_address: formData.get('user_address')
+        }
+      ),
+      redirect: 'follow'
+    }
+
+    let res = await fetch('/auth/register', option)
+    let json = await res.json()
+    console.log({
+      action: 'insert',
+      user_name: formData.get('user_name'),
+      user_email: formData.get('user_email'),
+      user_password: formData.get('user_password'),
+      user_address: formData.get('user_address')
+    });
+
+    console.log(json);
+
+    if (json.message === 'ok') {
+      Alert.showSuccess('สมัครเข้าใช้งานสำเร็จ')
+      if (window.confirm('สมัครเข้าใช้งานสำเร็จ กรุณากดตกลงเพื่อเข้าสู่ระบบ')) {
+        window.location.href = '/login'
+      }
+    } else {
+      document.querySelectorAll('.form-input').forEach((element) => {
+        element.style.border = '1px solid red'
+      })
+      Alert.showError(json.message)
+    }
+  })
+</script>
+
+</html>

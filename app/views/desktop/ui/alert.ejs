@@ -1,0 +1,70 @@
+<style>
+    .alert {
+        z-index: 1000;
+        display: none;
+        padding: 20px;
+        color: white;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 5px 5px;
+        width: 30%;
+        justify-content: space-between;
+        border-radius: 4px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .closebtn:hover {
+        color: black;
+    }
+
+    .bg-red {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .bg-green {
+        background-color: #16a34a;
+        color: white;
+    }
+
+    .bg-y {
+        background-color: #facc15;
+        color: white;
+    }
+</style>
+<div class="alert bg-red">
+    <div id="texterror"></div>
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+</div>
+<div class="alert bg-green">
+    <div id="textsuccess"></div>
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+</div>
+<div class="alert bg-y">
+    <div id="textwarning"></div>
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+</div>

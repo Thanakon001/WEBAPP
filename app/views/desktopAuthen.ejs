@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <link rel="stylesheet" href="/desktop/style/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <form class="container" id="form_login">
+        <%-include('desktop/ui/alert.ejs') %>
+            <h2>เข้าสู่ระบบ</h2>
+            <p>เข้าสู่ระบบเพื่อเริ่มต้นใช้บริการ</p>
+            <input type="text" name="username" id="username" class="form-input" placeholder="อีเมล">
+            <input type="password" name="password" id="password" class="form-input" placeholder="รหัสผ่าน">
+            <button class="form-button" type="submit">เข้าสู่ระบบ</button>
+            <div class="footer-text">
+                ยังไม่มีบัญชี? <a href="/register">สมัครเข้าใช้งาน</a>.
+            </div>
+    </form>
+</body>
+<script src="/desktop/js/element.js"></script>
+<script>
+    let form_login = document.getElementById('form_login');
+
+    form_login.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        let formData = new FormData(form_login);
+        let username = formData.get('username');
+        let password = formData.get('password');
+
+        try {
+            let res = await fetch('/auth/login', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            let json = await res.json();
+            console.log(json);
+
+            if (json.message === 'ok') {
+                localStorage.setItem('token', json.token);
+                window.location.href = '/';
+            } else {
+                document.getElementById('password').value = '';
+                document.getElementById('username').style.border = '1px solid red';
+                document.getElementById('password').style.border = '1px solid red';
+                Alert.showError(json.message);
+            }
+        } catch (error) {
+            console.error('เกิดข้อผิดพลาดในการเชื่อมต่อ:', error);
+            Alert.showError('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาลองใหม่อีกครั้ง');
+        }
+    });
+</script>
+
+</html>

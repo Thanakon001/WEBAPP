@@ -1,0 +1,23 @@
+<!DOCTYPE html lang="en">
+<html lang="en">
+<%- include('./desktop/page/_headerLink.ejs') %>
+    <body>
+        <!-- navbar -->
+        <%- include('./desktop/ui/nav.ejs') %>
+        <div class="contai" id="desktop">
+            <%- include('./desktop/ui/alert.ejs') %>
+            <div class="contai-page">
+                <!-- sidebar -->
+                <%- include('./desktop/ui/sidebar.ejs') %>
+                    <!-- page -->
+                    <%- include('./desktop/page/dash.ejs') %>
+                    <%- include('./desktop/page/note.ejs') %>
+                    <%- include('./desktop/page/report_time.ejs') %>
+                    <%- include('./desktop/page/report_year.ejs') %>
+                    <%- include('./desktop/page/user_setting.ejs') %>
+                </div>
+                <%- include('./desktop/ui/modal.ejs') %>
+                <%- include('./desktop/page/_srcriptLink.ejs') %>
+        </div>
+    </body>
+</html>

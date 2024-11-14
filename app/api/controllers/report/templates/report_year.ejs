@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายงานรายรับรายจ่ายประจำปี</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            font-size: 14px;
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 7px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>รายงานรายรับรายจ่ายประจำปี</h2>
+        <% if(headers) { %>         
+            <span><%= headers.com_name %></span>
+            <% if(headers.com_details) { %>
+                <span><%= headers.com_address %></span>
+            <% } %>
+        <% } %>
+        <table>
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>ปี</th>
+                    <th>รายรับ (บาท)</th>
+                    <th>รายจ่าย (บาท)</th>
+                    <th>คงเหลือ (บาท)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(data) { %>
+                <% let total_income = 0 %>
+                <% let total_expense = 0 %>
+                <% data.forEach((item, index) => { %>
+                    <% total_income += item.total_income %>
+                    <% total_expense += item.total_expense %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= item.year %></td>
+                        <td><%= item.total_income %></td>
+                        <td><%= item.total_expense %></td>
+                        <td><%= item.total_income - item.total_expense %></td>
+                    </tr>
+                <% }) %>
+                <% } %>
+            </tbody>
+            <tfoot>
+                <% if(data) { %>
+                    <% let total_income = 0 %>
+                    <% let total_expense = 0 %>
+                    <% data.forEach((item) => { %>
+                        <% total_income += item.total_income %>
+                        <% total_expense += item.total_expense %>
+                    <% }) %>
+                    <tr>
+                        <td colspan="2" class="total">รวมทั้งปี</td>
+                        <td class="total"><%= total_income %></td>
+                        <td class="total"><%= total_expense %></td>
+                        <td class="total"><%= total_income - total_expense %></td>
+                    </tr>
+                <% } %>
+            </tfoot>
+        </table>
+    </div>
+</body>
+
+</html>
